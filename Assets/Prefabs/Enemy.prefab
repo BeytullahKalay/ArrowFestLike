@@ -397,7 +397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
-  detectPlayerAreaRadius: 8
+  detectPlayerAreaRadius: 10
   gm: {fileID: 0}
 --- !u!114 &8863858863118182987
 MonoBehaviour:

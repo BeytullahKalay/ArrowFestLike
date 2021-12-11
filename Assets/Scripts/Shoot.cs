@@ -28,7 +28,6 @@ public class Shoot : MonoBehaviour
                 GameObject bulletObj = Instantiate(gm.bulletPrefab, bulletSpawnPos.position, Quaternion.identity);
                 bulletObj.GetComponent<BulletScript>().targetObj = detectScript.targets[0];
                 nextFireTime = Time.time + 1 / firePerSecond;
-                print("Shoot");
             }
         }
         else

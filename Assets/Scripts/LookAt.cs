@@ -57,10 +57,7 @@ public class LookAt : MonoBehaviour
     }
 
     private void HandsUpBois()
-    {
-        print("HandsUp Working");
-       
-
+    {   
         foreach (GameObject arm in Arms)
         {
             Quaternion desRot = arm.transform.rotation * Quaternion.Euler(-90, 0, 0);

@@ -1,7 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour
 {
@@ -12,6 +12,7 @@ public class GameMaster : MonoBehaviour
     public GameObject bulletPrefab;
 
     [Header("Particle FX")]
+    public GameObject soliderInvokePFX;
     public GameObject soliderDeathPFX;
     public GameObject enemyDeathPFX;
 
@@ -35,6 +36,9 @@ public class GameMaster : MonoBehaviour
         Move,
     }
 
+    [Space(10)]
+    public List<GameObject> enemyList = new List<GameObject>();
+
     [Header("Enemy Health Values")]
     public int normalEnemyHealth = 100;
     public int giantEnemyHealth = 250;
@@ -48,6 +52,15 @@ public class GameMaster : MonoBehaviour
     public float lookAtLerpSpeed = 4f;
     public float handUpLerpSpeed = 10f;
 
+    [Header("UI")]
+    [SerializeField] private GameObject menuPanel;
+    [SerializeField] private GameObject CongratulationsPanel;
+
+    public void PlaySoliderInvokePFX(Vector3 position)
+    {
+        GameObject obj = Instantiate(soliderInvokePFX, position, Quaternion.Euler(-90, 0, 0));
+        Destroy(obj, 1.5f);
+    }
 
     public void PlaySoliderDeathPFX(Vector3 position)
     {
@@ -64,5 +77,26 @@ public class GameMaster : MonoBehaviour
     public void UpdateSoliderCount()
     {
         textUI.text = solidersList.Count.ToString();
+    }
+
+    public void StartTheGame()
+    {
+        playerState = PlayerState.Move;
+        menuPanel.SetActive(false);
+    }
+
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+
+    // Burada Update method kullanmak yerine disaridan baska bir objeden denetlemek daha dogru.
+    private void Update()
+    {
+        if (enemyList.Count == 0)
+        {
+            CongratulationsPanel.SetActive(true);
+        }
     }
 }

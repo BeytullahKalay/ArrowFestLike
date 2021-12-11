@@ -18,14 +18,12 @@ public class EnemyHealthSystem : MonoBehaviour
 
     private void Start()
     {
+        gm.enemyList.Add(gameObject);
+
         if (enemyType == EnemyType.normalEnemy)
-        {
             currentHealth = gm.normalEnemyHealth;
-        }
         else if (enemyType == EnemyType.giantEnemy)
-        {
             currentHealth = gm.giantEnemyHealth;
-        }
 
         DefaultEnemyMat();
     }
@@ -37,6 +35,7 @@ public class EnemyHealthSystem : MonoBehaviour
         if (currentHealth <= 0)
         {
             gm.PlayEnemyDeathPFX(transform.position);
+            gm.enemyList.Remove(gameObject);
             Destroy(gameObject);
         }
         HurtEnemyMat();

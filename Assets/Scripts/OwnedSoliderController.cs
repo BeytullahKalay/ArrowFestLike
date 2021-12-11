@@ -21,9 +21,7 @@ public class OwnedSoliderController : MonoBehaviour
 
         if (other.gameObject.tag == "Wall")
         {
-
             other.gameObject.GetComponent<WallOperation>().DoOperation();
-
             Destroy(other.gameObject);
         }
     }

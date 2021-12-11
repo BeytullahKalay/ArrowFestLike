@@ -16,11 +16,10 @@ public class FirstSolider : MonoBehaviour
         gm.UpdateSoliderCount();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground" && gm.playerState == GameMaster.PlayerState.Move)
         {
-            gm.playerState = GameMaster.PlayerState.Move;
             rb.useGravity = false;
             rb.constraints = RigidbodyConstraints.FreezePositionY;
 

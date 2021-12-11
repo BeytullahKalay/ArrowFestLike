@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -172,6 +170,7 @@ public class WallOperation : MonoBehaviour
 
         Vector3 finalSpawnPos = new Vector3(x, gm.collectedSolidersHolder.position.y, z);
         GameObject obj = Instantiate(gm.soliderPrefab, finalSpawnPos, Quaternion.identity);
+        gm.PlaySoliderInvokePFX(finalSpawnPos);
         obj.transform.parent = gm.collectedSolidersHolder.transform;
 
         gm.solidersList.Add(obj);
@@ -182,6 +181,7 @@ public class WallOperation : MonoBehaviour
         for (int i = 1; i < removeCount + 1; i++)
         {
             GameObject removedGameObj = gm.solidersList[gm.solidersList.Count - i];
+            gm.PlaySoliderDeathPFX(removedGameObj.transform.position);
             gm.solidersList.Remove(removedGameObj);
             Destroy(removedGameObj);
         }
